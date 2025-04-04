@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+}
+
+.todo-block {
+    display: block;
+    /* Each task in a new row */
+    background-color: #dcdcdc;
+    padding: 5px;
+    border-radius: 8px;
+    margin: 15px 0;
+    width: auto;
+    /* Width adjusts automatically */
+}
+
+.todo-content {
+    text-align: left;
+    padding: 10px;
+    display: inline-block;
+    width: calc(100%-10px);
+    display: block;
+}
+
+/* Title */
+.todo-title {
+    color: #202020;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+/* Description */
+.todo-description {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+    display: inline-block;
+    max-width: 80%
+}
+
+/* Done Button */
+.done-button {
+    background: none;
+    border: 1px solid black;
+    color: black;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.done-button:hover {
+    background-color: #f0f0f0;
+}
