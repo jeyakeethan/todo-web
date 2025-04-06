@@ -1,8 +1,14 @@
 import axios from 'axios';
 
-// const API_URL = process.env.REACT_APP_API_URL + '/api/todo';
-const API_URL = 'http://localhost:5194/api/todo';
-// const API_URL = 'http://todo-api:5194/api/todo';
+let API_URL;
+
+if (process.env.NODE_ENV === 'development') {
+  API_URL = 'http://localhost:5194/api/todo'; // for local development
+} else {
+  API_URL = process.env.REACT_APP_API_URL + '/api/todo'; // for Docker (using the .env variable)
+}
+
+console.log('API_URL:', API_URL);
 
 // Get all tasks
 export const getTasks = () => {
