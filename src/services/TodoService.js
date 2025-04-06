@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = "http://localhost:5194/api/todo";
+// const API_URL = process.env.REACT_APP_API_URL + '/api/todo';
+const API_URL = 'http://localhost:5194/api/todo';
+// const API_URL = 'http://todo-api:5194/api/todo';
 
 // Get all tasks
 export const getTasks = () => {
