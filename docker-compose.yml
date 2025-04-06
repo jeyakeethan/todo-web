@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  # MySQL Database (Dockerized)
+  mysql:
+    image: mysql:8.0.41
+    environment:
+      MYSQL_ROOT_PASSWORD: P@55w0rd2020   # Root password for MySQL
+      MYSQL_DATABASE: tododb  # Default database to be created
+    ports:
+      - "3307:3306"  # Host port 3307 mapped to container port 3306
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persist MySQL data
+    networks:
+      - app-network
+
+  # C# API (Backend)
+  todo-api:
+    build:
+      context: ./todo-api  # Path to your C# API directory
+      dockerfile: Dockerfile
+    ports:
+      - "5194:5194"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production 	
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=tododb
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=P@55w0rd2020
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+    restart: always
+    command: ["dotnet", "todo-api.dll"]
+
+  # React Frontend
+  todo-web:
+    build:
+      context: ./todo-web  # Path to your React app directory
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"  # Expose React app on port 3000
+    environment:
+      - REACT_APP_API_URL=http://todo-api:5194/api/todo  # React will use the C# API
+    depends_on:
+      - todo-api
+    networks:
+      - app-network
+    restart: always
+
+volumes:
+  mysql-data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
