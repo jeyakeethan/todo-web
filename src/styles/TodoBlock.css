@@ -5,8 +5,9 @@
 .todo-block {
     display: block;
     /* Each task in a new row */
-    background-color: #dcdcdc;
+    background-color: #f5f5f5;
     padding: 5px;
+    border: 2px solid #cccccc;
     border-radius: 8px;
     margin: 15px 0;
     width: auto;
