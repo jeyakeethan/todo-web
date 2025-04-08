@@ -16,10 +16,10 @@ services:
   # C# API (Backend)
   todo-api:
     build:
-      context: ./todo-api
+      context: ./todo-api/api
       dockerfile: Dockerfile
     ports:
-      - "5194:80"
+      - "5194:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - MYSQL_HOST=mysql
